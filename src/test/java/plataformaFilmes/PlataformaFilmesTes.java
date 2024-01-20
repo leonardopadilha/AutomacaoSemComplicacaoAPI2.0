@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlataformaFilmesTes {
 
-    String token;
+    static String token;
 
     @Test
     public void validarLogin() {
@@ -32,7 +32,7 @@ public class PlataformaFilmesTes {
     }
 
     @BeforeAll
-    public void validarLoginMap() {
+    public static void validarLoginMap() {
         RestAssured.baseURI = "http://localhost:8080";
 
         Map<String, String> map = new HashMap<>();
@@ -46,7 +46,28 @@ public class PlataformaFilmesTes {
         assertNotNull(token);
     }
 
-    public Response post(ContentType contentType, Object jsonBody, String endpoint) {
+    @Test
+    public void validarConsultaCategoria() {
+        Map<String, String> header = new HashMap<>();
+        header.put("Authorization", "Bearer " + token);
+
+       Response response = get(header, "/categorias");
+       assertEquals(200, response.statusCode());
+
+        System.out.println(response.jsonPath().get().toString());
+    }
+
+    private Response get(Map<String, String> header, String endpoint) {
+        return RestAssured
+                     .given()
+                         .relaxedHTTPSValidation()
+                         .headers(header)
+                     .when()
+                         .get(endpoint)
+                     .thenReturn();
+    }
+
+    public static Response post(ContentType contentType, Object jsonBody, String endpoint) {
         return RestAssured
                     .given()
                         .relaxedHTTPSValidation()
