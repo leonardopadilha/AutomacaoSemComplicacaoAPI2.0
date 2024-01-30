@@ -3,6 +3,7 @@ package plataformaFilmes;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import maps.LoginMap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import utils.RestUtils;
@@ -15,8 +16,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class PlataformaFilmesTes {
 
-    static String token;
-
     @Test
     public void validarLogin() {
         RestUtils.setBaseUri("http://localhost:8080");
@@ -28,30 +27,27 @@ public class PlataformaFilmesTes {
 
         Response response = RestUtils.post(ContentType.JSON, jsonBody, "/auth");
 
-        token = response.body().jsonPath().get("token");
+        LoginMap.token = response.body().jsonPath().get("token");
         assertEquals(200, response.statusCode());
-        assertNotNull(token);
+        assertNotNull(LoginMap.token);
     }
 
     @BeforeAll
     public static void validarLoginMap() {
         RestUtils.setBaseUri("http://localhost:8080");
+        LoginMap.initLogin();
 
-        Map<String, String> map = new HashMap<>();
-        map.put("email", "aluno@email.com");
-        map.put("senha", "123456");
+        Response response = RestUtils.post(ContentType.JSON, LoginMap.getLogin(), "/auth");
 
-        Response response = RestUtils.post(ContentType.JSON, map, "/auth");
-
-        token = response.body().jsonPath().get("token");
+        LoginMap.token = response.body().jsonPath().get("token");
         assertEquals(200, response.statusCode());
-        assertNotNull(token);
+        assertNotNull(LoginMap.token);
     }
 
     @Test
     public void validarConsultaCategoria() {
         Map<String, String> header = new HashMap<>();
-        header.put("Authorization", "Bearer " + token);
+        header.put("Authorization", "Bearer " + LoginMap.token);
 
        Response response = RestUtils.get(header, "/categorias");
        assertEquals(200, response.statusCode());
