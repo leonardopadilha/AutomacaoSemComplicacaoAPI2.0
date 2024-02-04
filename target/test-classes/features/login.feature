@@ -5,7 +5,7 @@ Funcionalidade: Realizar Login
 
   Cenario: Realizar Login com Sucesso
     Dado que tenha um payload da API de Login
-    Quando envio uma requisição do tipo POST de Login
+    Quando envio uma requisicao do tipo POST de Login
     Entao valido que recebo status 200 no response
     E armazeno o token que recebo do response de Login
 
@@ -13,5 +13,5 @@ Funcionalidade: Realizar Login
     Dado que tenha um payload da API de Login com as seguintes informacoes
       | email | invalido@email.com |
       | senha | 123456             |
-    Quando envio uma requisição do tipo POST de Login
+    Quando envio uma requisicao do tipo POST de Login
     Entao valido que recebo status 400 no response
