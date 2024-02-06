@@ -25,7 +25,7 @@ public class PlataformaFilmesTes {
                 "\"senha\": \"123456\"" +
                 "}";
 
-        Response response = RestUtils.post(ContentType.JSON, jsonBody, "/auth");
+        Response response = RestUtils.post(jsonBody, ContentType.JSON, "/auth");
 
         LoginMap.token = response.body().jsonPath().get("token");
         assertEquals(200, response.statusCode());
@@ -37,7 +37,7 @@ public class PlataformaFilmesTes {
         RestUtils.setBaseUri("http://localhost:8080");
         LoginMap.initLogin();
 
-        Response response = RestUtils.post(ContentType.JSON, LoginMap.getLogin(), "/auth");
+        Response response = RestUtils.post(LoginMap.getLogin(), ContentType.JSON, "/auth");
 
         LoginMap.token = response.body().jsonPath().get("token");
         assertEquals(200, response.statusCode());

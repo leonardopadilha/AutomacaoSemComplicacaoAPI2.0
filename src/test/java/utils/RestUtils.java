@@ -34,7 +34,7 @@ public class RestUtils {
                                 .thenReturn();
                     }
 
-    public static Response post(ContentType contentType, Object jsonBody, String endpoint) {
+    public static Response post(Object jsonBody, ContentType contentType, String endpoint) {
         return response = RestAssured
                                 .given()
                                 .relaxedHTTPSValidation()

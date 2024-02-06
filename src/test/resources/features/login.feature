@@ -21,9 +21,10 @@
 
       @loginUsuarioInvalido @regressivo
       Exemplos:
-      |cenario|email|senha|
-      |usuario invalido|invalido@email.com|123456|
+        | cenario          | email              | senha  |
+        | usuario invalido | invalido@email.com | 123456 |
 
       @loginSenhaInvalida
-      |cenario|email|senha|
-      |senha invalida|aluno@email.com|invalida |
+      Exemplos:
+        | cenario        | email           | senha    |
+        | senha invalida | aluno@email.com | invalida |
