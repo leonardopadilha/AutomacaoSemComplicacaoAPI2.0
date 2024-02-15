@@ -16,8 +16,14 @@ public class CategoriaSteps {
     public void queTenhaUmPayloadDaAPIDeCategoria() {
         header.put("Authorization", "Bearer " + LoginMap.token);
     }
+
     @Quando("realizo uma requisicao do tipo GET de Categoria")
     public void realizoUmaRequisicaoDoTipoGETDeCategoria() {
         RestUtils.get(header, "categorias");
+    }
+
+    @Dado("que altere o campo {string} para {string} do header de Categoria")
+    public void queAltereOCampoParaInvalidoDoHeaderDeCategoria(String key, String value) {
+        header.put(key, value);
     }
 }
