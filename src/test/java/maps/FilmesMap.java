@@ -7,6 +7,8 @@ import java.util.Map;
 
 public class FilmesMap {
 
+    public static int id;
+
     private static Map<String, String> header;
     private static Map<String, Object> filme;
     private static Map<String, Object> categoria1;
