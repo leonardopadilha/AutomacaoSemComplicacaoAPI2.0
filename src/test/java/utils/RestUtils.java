@@ -44,4 +44,16 @@ public class RestUtils {
                                 .post(endpoint)
                                 .thenReturn();
     }
+
+    public static Response post(Map<String, String> header, Object jsonBody, ContentType contentType, String endpoint) {
+        return response = RestAssured
+                .given()
+                .relaxedHTTPSValidation()
+                .contentType(contentType)
+                .headers(header)
+                .body(jsonBody)
+                .when()
+                .post(endpoint)
+                .thenReturn();
+    }
 }
