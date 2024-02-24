@@ -1,6 +1,7 @@
 package steps;
 
 import io.cucumber.java.pt.Dado;
+import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Entao;
 import io.cucumber.java.pt.Quando;
 import io.restassured.http.ContentType;
@@ -31,5 +32,17 @@ public class FilmeSteps {
         String nome = FilmesMap.getFilme().get("nome").toString();
         param.put("nome", nome);
         RestUtils.get(FilmesMap.getHeader(), param, "filmes");
+    }
+
+    @Quando("altero o indice {int} da lista de categorias de filme com os valores")
+    public void alteroOIndiceDaListaDeCategoriasDeFilmeComOsValores(int indice, Map<String, String> map) {
+        FilmesMap.getListCategoria().get(indice).putAll(map);
+
+    }
+
+    @Quando("realizo uma requisicao do tipo PUT de Filme")
+    public void realizoUmaRequisicaoDoTipoPUTDeFilme() {
+        RestUtils.put(FilmesMap.getHeader(), FilmesMap.getFilme(),
+                ContentType.JSON, "filmes/" + FilmesMap.id);
     }
 }
