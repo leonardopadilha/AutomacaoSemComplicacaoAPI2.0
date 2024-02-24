@@ -74,8 +74,7 @@ public class FilmesMap {
         filme = new HashMap<>();
 
         filme.put("nome", "Alerta Vermelho");
-        filme.put("descricao", "Um alerta vermelho da Interpol foi emitido e o agente do FBI " +
-                "John Hartley assume o caso.");
+        filme.put("descricao", "Um alerta vermelho da Interpol");
         filme.put("duracao", 1.32);
         filme.put("categorias", listCategoria);
         filme.put("plataformas", listPlataforma);
