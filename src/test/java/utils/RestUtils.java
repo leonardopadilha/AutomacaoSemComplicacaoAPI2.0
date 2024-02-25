@@ -79,4 +79,14 @@ public class RestUtils {
                 .put(endpoint)
                 .thenReturn();
     }
+
+    public static Response delete(Map<String, String> header, String endpoint) {
+        return response = RestAssured
+                .given()
+                .relaxedHTTPSValidation()
+                .headers(header)
+                .when()
+                .delete(endpoint)
+                .thenReturn();
+    }
 }
